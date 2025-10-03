@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhiroop Bhattacharyya Portfolio</title>
+  <style>
+    /* ----- Global Styles ----- */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      color: #111111;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #007ACC; /* subtle accent */
+      text-decoration: none;
+    }
+
+    /* ----- Container ----- */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* ----- Hero / Intro ----- */
+    #intro {
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+
+    #intro h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+
+    #intro p {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+
+    /* ----- Projects ----- */
+    #projects {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .project-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+      background-color: #fefefe;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .project-card h2 {
+      font-size: 1.4em;
+      margin: 15px 20px 10px;
+    }
+
+    .project-card p {
+      margin: 0 20px 20px;
+      font-size: 1em;
+      color: #333;
+    }
+
+    /* ----- Footer ----- */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666;
+      font-size: 0.9em;
+      border-top: 1px solid #ddd;
+    }
+
+    /* ----- Responsive ----- */
+    @media (min-width: 600px) {
+      #projects {
+        grid-template-columns: 1fr 1fr; /* 2 columns on medium screens */
+      }
+    }
+
+    @media (min-width: 900px) {
+      #projects {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columns on large screens */
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero / Intro -->
+  <section id="intro" class="container">
+    <h1>Abhiroop Bhattacharyya</h1>
+    <p>Building scalable backend systems while exploring the creative potential of AI.</p>
+    <p>M.Tech in Data Science (IIIT Vadodara) | 3+ years in Python/Django | 100x Applied GenAI cohort</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="container">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="visual1.png" alt="Perfume Creative Generation">
+      <h2>100x Mid-Capstone — Personalized LoRA Perfume Creative Generation</h2>
+      <p>Trained a LoRA model on face and perfume dataset to generate realistic headshots and ad-style creatives.</p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="visual2.png" alt="Flux Comic Strip Generator">
+      <h2>Flux Comic Strip Generator</h2>
+      <p>Created 3-panel comics using Flux and custom LoRA models for face & comic illustration style.</p>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="visual3.png" alt="PDF Chatbot Frontend">
+      <h2>100x-LLM-week2-pdf-chatbot-frontend</h2>
+      <p>Interactive Streamlit frontend for PDF chatbot, integrated with FastAPI backend.</p>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    Contact: <a href="mailto:your.email@example.com">your.email@example.com</a>
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhiroop Bhattacharyya Portfolio</title>
+  <style>
+    /* ----- Global Styles ----- */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      color: #111111;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #007ACC; /* subtle accent */
+      text-decoration: none;
+    }
+
+    /* ----- Container ----- */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* ----- Hero / Intro ----- */
+    #intro {
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+
+    #intro h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+
+    #intro p {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+
+    /* ----- Projects ----- */
+    #projects {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .project-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+      background-color: #fefefe;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .project-card h2 {
+      font-size: 1.4em;
+      margin: 15px 20px 10px;
+    }
+
+    .project-card p {
+      margin: 0 20px 20px;
+      font-size: 1em;
+      color: #333;
+    }
+
+    /* ----- Footer ----- */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666;
+      font-size: 0.9em;
+      border-top: 1px solid #ddd;
+    }
+
+    /* ----- Responsive ----- */
+    @media (min-width: 600px) {
+      #projects {
+        grid-template-columns: 1fr 1fr; /* 2 columns on medium screens */
+      }
+    }
+
+    @media (min-width: 900px) {
+      #projects {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columns on large screens */
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero / Intro -->
+  <section id="intro" class="container">
+    <h1>Abhiroop Bhattacharyya</h1>
+    <p>Building scalable backend systems while exploring the creative potential of AI.</p>
+    <p>M.Tech in Data Science (IIIT Vadodara) | 3+ years in Python/Django | 100x Applied GenAI cohort</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="container">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="visual1.png" alt="Perfume Creative Generation">
+      <h2>100x Mid-Capstone — Personalized LoRA Perfume Creative Generation</h2>
+      <p>Trained a LoRA model on face and perfume dataset to generate realistic headshots and ad-style creatives.</p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="visual2.png" alt="Flux Comic Strip Generator">
+      <h2>Flux Comic Strip Generator</h2>
+      <p>Created 3-panel comics using Flux and custom LoRA models for face & comic illustration style.</p>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="visual3.png" alt="PDF Chatbot Frontend">
+      <h2>100x-LLM-week2-pdf-chatbot-frontend</h2>
+      <p>Interactive Streamlit frontend for PDF chatbot, integrated with FastAPI backend.</p>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    Contact: <a href="mailto:your.email@example.com">your.email@example.com</a>
+  </footer>
+
+</body>
+</html>
