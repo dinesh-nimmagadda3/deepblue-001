@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapText - Every place in your story, instantly explored</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #F5F1E8;
+            --charcoal: #3D3D3D;
+            --terracotta: #C77B58;
+            --sage: #9CAF88;
+            --white: #FEFEFE;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.3;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 254, 254, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--terracotta);
+            font-family: Georgia, serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "📚";
+        }
+
+        .cta-btn {
+            background: var(--terracotta);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .cta-btn:hover {
+            background: #b66a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(199, 123, 88, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 L90 10 L90 90 L10 90 Z" fill="none" stroke="%239CAF88" stroke-width="0.5" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .book-mockup {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .book-text {
+            font-family: Georgia, serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .place-highlight {
+            background: linear-gradient(120deg, rgba(199, 123, 88, 0.2) 0%, rgba(199, 123, 88, 0.3) 100%);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .map-overlay {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 200px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            padding: 1rem;
+            animation: popIn 0.5s ease 1s backwards;
+        }
+
+        .map-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--sage) 0%, #7a9b6e 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .section-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+        }
+
+        .section-content p {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 5%;
+            background: var(--cream);
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+        }
+
+        .steps {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .step-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        .step p {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+
+        /* Demo Video Section */
+        .demo {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            position: relative;
+            padding-bottom: 56.25%;
+            background: var(--charcoal);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--terracotta) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .play-button::after {
+            content: "▶";
+            font-size: 2rem;
+            color: var(--terracotta);
+            margin-left: 5px;
+        }
+
+        .demo-caption {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background: var(--cream);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            display: flex;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--terracotta);
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+
+        /* Ideal For Section */
+        .ideal-for {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .ideal-for h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .use-cases {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .use-case {
+            background: var(--cream);
+            padding: 1.5rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .use-case:hover {
+            background: var(--terracotta);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Waitlist Section */
+        .waitlist {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--terracotta) 0%, #b66a4a 100%);
+            color: white;
+        }
+
+        .waitlist h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .waitlist-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .waitlist-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .waitlist-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: 3px solid rgba(255,255,255,0.5);
+        }
+
+        .submit-btn {
+            background: var(--charcoal);
+            color: white;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background: #2a2a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .privacy-note {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--charcoal);
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-family: Georgia, serif;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .map-overlay {
+                position: static;
+                transform: none;
+                margin: 2rem auto 0;
+            }
+
+            .steps, .features-grid, .use-cases {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 1rem 5%;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .cta-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">MapText</div>
+        <button class="cta-btn" onclick="document.querySelector('.waitlist').scrollIntoView({behavior: 'smooth'})">Join Waitlist</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Every place in your story, instantly explored</h1>
+                <p>MapText brings geography to life as you read—with inline maps, routes, and cultural context that appear right when you need them.</p>
+                <button class="cta-btn" onclick="document.querySelector('.demo').scrollIntoView({behavior: 'smooth'})">Watch the Demo</button>
+            </div>
+            <div class="hero-visual">
+                <div class="book-mockup">
+                    <div class="book-text">
+                        They departed from <span class="place-highlight">Paris</span> at dawn, making their way south through the vineyards of Burgundy. By evening, they could see the snow-capped peaks of the Alps rising in the distance.
+                    </div>
+                    <div class="map-overlay">
+                        <div class="map-content">🗺️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="section-content">
+            <h2>Ever lost track of where a character is traveling?</h2>
+            <p>You're deep in a novel when a city, mountain range, or ancient route is mentioned. You pause, maybe Google it, lose your flow—or you skip it and miss the richness of the setting. There has to be a better way.</p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>Read. Discover. Connect.</h2>
+        <div class="steps">
+            <div class="step">
+                <span class="step-icon">📖</span>
+                <h3>MapText detects place names automatically</h3>
+                <p>As you read, MapText recognizes geographic references in real-time</p>
+            </div>
+            <div class="step">
+                <span class="step-icon">📍</span>
+                <h3>Inline maps appear instantly</h3>
+                <p>Click any place name to see maps, routes, and context without leaving your book</p>
+            </div>
+            <div class="step">
+                <span class="step-icon">🌍</span>
+                <h3>Cultural context enriches your experience</h3>
+                <p>Learn about history, culture, and significance of every location</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="demo">
+        <h2>See MapText in Action</h2>
+        <div class="video-container">
+            <div class="video-placeholder">
+                <div class="play-button"></div>
+                <p style="font-size: 1.2rem;">Demo Video Coming Soon</p>
+            </div>
+        </div>
+        <p class="demo-caption">Experience the future of reading</p>
+        <div style="text-align: center;">
+            <button class="cta-btn" onclick="document.querySelector('.waitlist').scrollIntoView({behavior: 'smooth'})">Join the Waitlist</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Designed for Readers Who Love Stories</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <div>
+                    <h3>Seamless Integration</h3>
+                    <p>Never breaks your reading flow. Works with your favorite reading apps and platforms.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🗺️</div>
+                <div>
+                    <h3>Rich Geographic Context</h3>
+                    <p>Historical maps, modern routes, cultural significance—curated by literature and geography experts.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <div>
+                    <h3>Smart & Accurate</h3>
+                    <p>Powered by advanced place recognition. Understands historical and fictional locations.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💫</div>
+                <div>
+                    <h3>Beautiful & Intuitive</h3>
+                    <p>Clean, distraction-free design. Maps and context that enhance, never interrupt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideal For Section -->
+    <section class="ideal-for">
+        <h2>Perfect For...</h2>
+        <div class="use-cases">
+            <div class="use-case">Historical fiction enthusiasts</div>
+            <div class="use-case">Travel memoir readers</div>
+            <div class="use-case">Epic fantasy fans</div>
+            <div class="use-case">Literature students</div>
+            <div class="use-case">Book clubs</div>
+            <div class="use-case">Curious minds</div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section class="waitlist">
+        <h2>Be Among the First to Experience MapText</h2>
+        <div class="waitlist-content">
+            <p>MapText is launching soon. Join our waitlist to get early access and exclusive updates.</p>
+            <form class="waitlist-form" onsubmit="handleSubmit(event)">
+                <input type="email" class="form-input" placeholder="Your email address" required>
+                <select class="form-input">
+                    <option value="">What genre do you read most? (Optional)</option>
+                    <option value="historical">Historical Fiction</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="travel">Travel Memoirs</option>
+                    <option value="literary">Literary Fiction</option>
+                    <option value="other">Other</option>
+                </select>
+                <button type="submit" class="submit-btn">Reserve My Spot</button>
+            </form>
+            <p class="privacy-note">We respect your privacy. No spam, just launch updates.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">MapText</div>
+            <div class="footer-tagline">Every place in your story, instantly explored</div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="copyright">© 2025 MapText. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
+            event.target.reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.step, .feature, .use-case').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
