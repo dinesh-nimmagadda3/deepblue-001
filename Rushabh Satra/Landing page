@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Planning Permission Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Urbanist', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        header, section, footer {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #222;
+        }
+        p, li {
+            font-weight: 400;
+        }
+        .cta-button {
+            background-color: #e76f51;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: background 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #d85b3e;
+        }
+
+        /* How It Works Cards */
+        .card-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 300px;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-home { background-color: #e5efff; }
+        .icon-search { background-color: #e5fbee; }
+        .icon-check { background-color: #f5e9ff; }
+        .icon-circle img {
+            width: 28px;
+        }
+
+        blockquote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-left: 4px solid #e76f51;
+            margin: 1rem 0;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Do You Need Planning Permission for Your Home Project?</h1>
+    <p>Find out in <strong>3 minutes</strong> — no architect, no confusion, no waiting.</p>
+    <a href="#" class="cta-button">Check My Property</a>
+</header>
+
+<section>
+    <h2>Whether You're Planning:</h2>
+    <ul>
+        <li>A loft conversion</li>
+        <li>A rear or side extension</li>
+        <li>A garden outbuilding</li>
+        <li>A porch</li>
+        <li>Even just adding a rooflight</li>
+    </ul>
+    <p>Our free online tool will tell you if your project:</p>
+    <ul>
+        <li>✅ Doesn’t need planning permission (Permitted Development)</li>
+        <li>🕓 Needs Prior Approval</li>
+        <li>🧾 Requires Full Planning Permission</li>
+    </ul>
+</section>
+
+<section>
+    <h2 style="text-align:center;">How It Works</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="icon-circle icon-home">
+                <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Enter Property Details" />
+            </div>
+            <h3>Enter property details</h3>
+            <p>Tell us about your property and the changes you're planning to make.</p>
+        </div>
+        <div class="card">
+            <div class="icon-circle icon-search">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Analyse Proposal" />
+            </div>
+            <h3>We analyse your proposal</h3>
+            <p>Our system checks your project against UK planning regulations and local rules.</p>
+        </div>
+        <div class="card">
+            <div class="icon-circle icon-check">
+                <img src="https://img.icons8.com/ios-filled/50/000000/checked--v1.png" alt="Get Instant Results" />
+            </div>
+            <h3>Get instant results</h3>
+            <p>Receive clear guidance on whether you need planning permission or not.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Want Clarity and Confidence?</h2>
+    <p><strong>Order a Planning Assessment Report – from just £39</strong></p>
+    <ul>
+        <li>✔ Tailored to your property and project</li>
+        <li>✔ Local planning rules explained in plain English</li>
+        <li>✔ Clear next steps</li>
+        <li>✔ Delivered to your inbox in minutes</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Why People Love It</h2>
+    <blockquote>“I had no idea if my extension needed permission — the tool gave me a result instantly. The report was super helpful and saved me £400 on a consultant.”<br><strong>— Sarah, Leeds</strong></blockquote>
+    <blockquote>“Fast, clear and way cheaper than paying a planner. Excellent value.”<br><strong>— Tom, Croydon</strong></blockquote>
+</section>
+
+<section>
+    <h2>Get Started Now</h2>
+    <p>No appointments. No hidden fees. Just straight answers — fast.</p>
+    <a href="#" class="cta-button">Try the Free Planning Check Tool Now</a>
+    <p><em>(You’ll get your results in under 3 minutes.)</em></p>
+</section>
+
+<section>
+    <h2>Still Not Sure?</h2>
+    <p>If you're in a Conservation Area, Greenbelt, or unsure what counts as Permitted Development — you're not alone.</p>
+    <p>🧭 Our tool simplifies it all. Don’t risk starting work without knowing the rules.</p>
+</section>
+
+<section>
+    <h2>Built by UK Planning Experts</h2>
+    <p>We’ve helped thousands of homeowners navigate the UK planning maze. Now we’ve made it simple — and fast — for you too.</p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Planning Checker. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
