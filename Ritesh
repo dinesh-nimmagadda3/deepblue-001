@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritesh Reddy - Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+        }
+
+        .projects-section {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .project-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .project-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #a0c4ff;
+        }
+
+        .project-description {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-description li {
+            padding: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #cbd5e0;
+            line-height: 1.6;
+        }
+
+        .project-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            margin-top: 1rem;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            body {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="projects-section">
+        <h2 class="section-title">Featured Projects</h2>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-number">01</div>
+                <h3 class="project-title">Investment Portfolio Tracker</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Supabase</span>
+                    <span class="tech-tag">JWT</span>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Built full-stack investment tracker with FastAPI backend and Streamlit frontend for secure multi-user data isolation</li>
+                        <li>Implemented JWT authentication with signup, login, and logout functionality</li>
+                        <li>Integrated Yahoo Finance & CoinGecko APIs for real-time livestock and crypto market data</li>
+                        <li>Designed RESTful endpoints for portfolio CRUD operations, analytics, and health checks</li>
+                        <li>Deployed as separate services on Hugging Face Spaces for production scalability</li>
+                    </ul>
+                </div>
+                <a href="https://ritesh1035-fp-frontend.hf.space/" target="_blank" class="project-link">View Project →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-number">02</div>
+                <h3 class="project-title">Bank Marketing Dashboard</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Claude Code</span>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Developed interactive dashboard for bank marketing analytics with key metrics and visualizations</li>
+                        <li>Processed marketing and customer data to compute campaign response rates and ROI trends</li>
+                        <li>Implemented advanced filters and segmentation metrics for data-driven decision-making</li>
+                        <li>Deployed as live web app on Hugging Face Spaces with performance optimization</li>
+                        <li>Enabled stakeholders to analyze campaign effectiveness through intuitive visual insights</li>
+                    </ul>
+                </div>
+                <a href="https://ritesh1035-bank-marketing-dashboard.hf.space/" target="_blank" class="project-link">View Project →</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-number">03</div>
+                <h3 class="project-title">AI Daily Planner</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Gradio</span>
+                    <span class="tech-tag">LLM</span>
+                    <span class="tech-tag">Claude Code</span>
+                    <span class="tech-tag">Hugging Face</span>
+                </div>
+                <div class="project-description">
+                    <ul>
+                        <li>Built AI-powered daily planner with Gradio for clean, interactive user experience</li>
+                        <li>Engineered backend using Llama LLM for intelligent task processing and dynamic responses</li>
+                        <li>Implemented responsive design ensuring reliability and smooth user interactions</li>
+                        <li>Deployed to Hugging Face Spaces with optimized environment configuration</li>
+                        <li>Created compelling UI to showcase AI capabilities in productivity applications</li>
+                    </ul>
+                </div>
+                <a href="https://ritesh1035-at-demo.hf.space/" target="_blank" class="project-link">View Project →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
