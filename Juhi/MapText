@@ -651,10 +651,15 @@
     <section class="demo">
         <h2>See MapText in Action</h2>
         <div class="video-container">
-            <div class="video-placeholder">
-                <div class="play-button"></div>
-                <p style="font-size: 1.2rem;">Demo Video Coming Soon</p>
-            </div>
+            <video 
+                width="100%" 
+                height="100%" 
+                controls
+                preload="metadata"
+                style="position: absolute; top: 0; left: 0; border-radius: 20px; object-fit: cover;">
+                <source src="https://github.com/dinesh-nimmagadda3/deepblue-001/raw/main/Juhi/Generated%20File%20October%2003%2C%202025%20-%206_56PM.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
         <p class="demo-caption">Experience the future of reading</p>
         <div style="text-align: center;">
