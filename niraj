@@ -1,1 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niraj - AI Artist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            font-weight: 300;
+        }
+
+        .hero .featured-art {
+            width: 90%;
+            max-width: 800px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero .featured-art::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="rgba(255,255,255,0.1)" fill="none"/></svg>');
+            opacity: 0.3;
+        }
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        /* About Section */
+        .about {
+            max-width: 800px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .about h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+            font-weight: 700;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+            font-weight: 300;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 4rem;
+            color: #f0f0f0;
+            font-weight: 700;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item .overlay h3 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item .overlay p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        /* Placeholder for images */
+        .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            max-width: 600px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .hero .featured-art {
+                height: 300px;
+            }
+        }
+
+        /* Modal for fullscreen view */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>NIRAJ</h1>
+        <p class="tagline">AI Artist Exploring Infinite Styles</p>
+        <div class="featured-art">
+            <div class="placeholder">Your Featured AI Artwork Goes Here<br>Replace with your best piece</div>
+        </div>
+        <div class="scroll-indicator" onclick="document.querySelector('.about').scrollIntoView({behavior: 'smooth'})">↓</div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About</h2>
+        <p>I'm Niraj, an AI artist passionate about exploring the infinite possibilities at the intersection of technology and creativity. Through AI, I create diverse visual experiences spanning multiple styles—from abstract experiments to detailed compositions. Each piece represents a unique journey of discovery, pushing the boundaries of what's possible when human imagination meets artificial intelligence.</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 1<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 1</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 2<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 2</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 3<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 3</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 4<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 4</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 5<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 5</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 6<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 6</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 7<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 7</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 8<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 8</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 9<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 9</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 10<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 10</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 11<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 11</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal(this)">
+                <div class="placeholder">Artwork 12<br>Replace with your image</div>
+                <div class="overlay">
+                    <h3>Piece Title 12</h3>
+                    <p>Brief description or style</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Let's Connect</h2>
+        <p>Interested in collaborating or just want to talk about AI art? Drop me a message!</p>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Niraj. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Created with passion for AI art</p>
+    </footer>
+
+    <!-- Modal for fullscreen image view -->
+    <div class="modal" id="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modal-img" src="" alt="Fullscreen artwork">
+    </div>
+
+    <script>
+        function openModal(element) {
+            const img = element.querySelector('img');
+            if (img) {
+                const modal = document.getElementById('modal');
+                const modalImg = document.getElementById('modal-img');
+                modal.classList.add('active');
+                modalImg.src = img.src;
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! (Note: This form needs backend integration to actually send emails. For now, it\'s a demo.)');
+            event.target.reset();
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
