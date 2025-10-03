@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Janvi Pagariya — Data Engineer & AI Enthusiast</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724;        /* dark navy */
+      --card:#0b1220;
+      --muted:#9aa6b2;
+      --accent:#2dd4bf;    /* teal */
+      --white:#e6eef6;
+      --glass: rgba(255,255,255,0.04);
+      --max-width:1100px;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* Light mode overrides (toggle applies .light on body) */
+    body.light{
+      --bg:#f7fafc;
+      --card:#ffffff;
+      --muted:#556070;
+      --accent:#0ea5a4;
+      --white:#0b1220;
+      --glass: rgba(11,18,32,0.03);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg), #071021 80%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .site{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:46px;height:46px;border-radius:10px;background:var(--glass);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);
+      font-size:18px;
+    }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-right:18px;
+      font-weight:600;
+    }
+    .cta {
+      background:linear-gradient(90deg,var(--accent), #06b6d4);
+      color:#042024;
+      padding:8px 14px;border-radius:8px;font-weight:700;border:0;cursor:pointer;
+    }
+
+    main{display:grid;grid-template-columns:1fr;gap:28px;}
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:28px;border-radius:12px;display:flex;gap:18px;align-items:center;
+      flex-wrap:wrap;
+    }
+    .hero .left{flex:1;min-width:240px}
+    .hero h1{margin:0;font-size:28px}
+    .hero p.lead{color:var(--muted);margin:10px 0 18px;}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-outline{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;color:var(--white);
+    }
+
+    .hero .headshot{
+      width:144px;height:144px;border-radius:12px;background:linear-gradient(180deg,var(--card),var(--glass));display:flex;
+      align-items:center;justify-content:center;overflow:hidden;
+      flex-shrink:0;border:1px solid rgba(255,255,255,0.03);
+    }
+    .headshot img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Grid sections */
+    .grid-2{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    h2{margin:0 0 12px;font-size:18px;color:var(--white)}
+
+    /* Projects list */
+    .projects{display:flex;flex-direction:column;gap:12px}
+    .project{display:flex;gap:12px;align-items:center}
+    .project .thumb{width:96px;height:64px;border-radius:8px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted)}
+    .project .meta{flex:1}
+    .project .meta h3{margin:0;font-size:15px}
+    .meta p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px 10px;border-radius:8px;color:var(--muted);font-weight:600;font-size:13px}
+
+    /* Footer/contact */
+    footer{margin-top:10px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .grid-2{grid-template-columns:1fr}
+      nav{display:none}
+      header{align-items:flex-start}
+      body{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="site" role="main">
+    <header>
+      <div class="brand" aria-label="Site brand">
+        <div class="logo" aria-hidden="true">JP</div>
+        <div>
+          <div style="font-weight:700">Janvi Pagariya</div>
+          <div style="color:var(--muted);font-size:13px">Data Engineer · AI Enthusiast</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn-outline" id="themeToggle" aria-pressed="false" title="Toggle light/dark">Toggle theme</button>
+        <a class="cta" href="resume.pdf" download aria-label="Download resume">Download Resume</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="left">
+          <h1 id="hero-heading">Hi — I'm Janvi. I build reliable data pipelines and explore creative AI.</h1>
+          <p class="lead">Data Engineer (Snowflake · dbt · Airflow) • Backend & APIs (Java, Python) • AI experiments with ComfyUI & SDXL.</p>
+          <div class="actions" role="group" aria-label="Primary actions">
+            <a class="cta" href="#projects">View projects</a>
+            <a class="btn-outline" href="mailto:youremail@example.com">Contact me</a>
+          </div>
+
+          <div style="margin-top:14px;color:var(--muted);font-size:14px">
+            <strong>Quick metrics:</strong> Built metric framework (UQF), migrated charts to Highcharts, producing visualizations for product insights.
+          </div>
+        </div>
+
+        <div class="headshot" aria-hidden="false">
+          <!-- Replace src with your headshot -->
+          <img src="headshot-placeholder.jpg" alt="Janvi Pagariya — headshot" onerror="this.style.display='block'; this.parentElement.innerText='Headshot'">
+        </div>
+      </section>
+
+      <!-- TWO COLUMN: LEFT content + RIGHT sidebar -->
+      <div class="grid-2">
+        <!-- LEFT COLUMN -->
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <!-- About -->
+          <section id="about" class="card" aria-labelledby="about-h">
+            <h2 id="about-h">About</h2>
+            <p style="color:var(--muted);margin:0 0 12px">I completed my B.Tech in Artificial Intelligence & Data Science and moved into data engineering. I finished an 11-month internship working with pipelines, Snowflake, dbt, Airflow, and moved to a full-time engineering role where I build backend services and transform data for analytics and visualizations.</p>
+
+            <p style="margin:0;color:var(--muted)"><strong>Current focus:</strong> migrating visualizations to Highcharts, building universal metric frameworks, and learning AI daily through practical projects using ComfyUI.</p>
+          </section>
+
+          <!-- Projects -->
+          <section id="projects" class="card" aria-labelledby="projects-h">
+            <h2 id="projects-h">Projects</h2>
+
+            <div class="projects">
+              <!-- Project 1 -->
+              <article class="project" aria-labelledby="p1">
+                <div class="thumb" aria-hidden="true">ComfyUI</div>
+                <div class="meta">
+                  <h3 id="p1">ComfyUI — Time Capsule Exhibition</h3>
+                  <p>15 themed images using SDXL Jaguerneat XL that visualize human evolution. Tech: ComfyUI, SDXL. <em>Gallery + download available.</em></p>
+                </div>
+              </article>
+
+              <!-- Project 2 -->
+              <article class="project" aria-labelledby="p2">
+                <div class="thumb" aria-hidden="true">Tracker</div>
+                <div class="meta">
+                  <h3 id="p2">Traffic Flow Tracker</h3>
+                  <p>Real-time traffic analysis & detection. Tech: Python, OpenCV, streaming pipelines. <strong>Impact:</strong> demos for vehicle counts and congestion patterns.</p>
+                </div>
+              </article>
+
+              <!-- Project 3 -->
+              <article class="project" aria-labelledby="p3">
+                <div class="thumb" aria-hidden="true">Calculator</div>
+                <div class="meta">
+                  <h3 id="p3">Merchant Calculator</h3>
+                  <p>Tool to compute ad ROI & competitor-triggered ads when competitor SKU is out-of-stock. Tech: Python (Flask), APIs, SQL.</p>
+                </div>
+              </article>
+
+              <!-- Add more projects as needed -->
+            </div>
+          </section>
+
+          <!-- Experience (detailed) -->
+          <section id="experience" class="card" aria-labelledby="exp-h">
+            <h2 id="exp-h">Experience</h2>
+            <div style="color:var(--muted);margin-bottom:8px">
+              <strong>Graas — Data Engineering (Intern → Full-time)</strong>
+            </div>
+            <ul style="margin:0 0 0 18px;color:var(--muted)">
+              <li>Built ETL pipelines with Snowflake & dbt; orchestrated via Airflow.</li>
+              <li>Designed UQF metric framework to unify calculations across dashboards.</li>
+              <li>Migrated visualization server from FusionCharts to Highcharts and rewrote backend formatters.</li>
+            </ul>
+          </section>
+
+          <!-- Contact -->
+          <section id="contact" class="card" aria-labelledby="contact-h">
+            <h2 id="contact-h">Contact</h2>
+            <p style="color:var(--muted);margin:0 0 12px">Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+            <p style="color:var(--muted);margin:0 0 12px">Connect: 
+              <a href="https://linkedin.com/in/your-linkedin" style="color:var(--accent);text-decoration:none" target="_blank" rel="noopener">LinkedIn</a> · 
+              <a href="https://github.com/your-github" style="color:var(--accent);text-decoration:none" target="_blank" rel="noopener">GitHub</a>
+            </p>
+            <p style="color:var(--muted);margin:0">Resume: <a href="resume.pdf" download style="color:var(--accent)">Download PDF</a></p>
+          </section>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside>
+          <div class="card" style="margin-bottom:12px" aria-labelledby="skills-h">
+            <h2 id="skills-h">Skills</h2>
+            <div class="skills" role="list">
+              <span class="skill" role="listitem">Snowflake</span>
+              <span class="skill" role="listitem">dbt</span>
+              <span class="skill" role="listitem">Airflow</span>
+              <span class="skill" role="listitem">SQL</span>
+              <span class="skill" role="listitem">Python</span>
+              <span class="skill" role="listitem">Java</span>
+              <span class="skill" role="listitem">Highcharts</span>
+              <span class="skill" role="listitem">ComfyUI / SDXL</span>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px" aria-labelledby="edu-h">
+            <h2 id="edu-h">Education</h2>
+            <p style="margin:0;color:var(--muted)"><strong>B.Tech — Artificial Intelligence & Data Science</strong><br>Vishwakarma University, Pune</p>
+          </div>
+
+          <div class="card" aria-labelledby="metrics-h">
+            <h2 id="metrics-h">Impact highlights</h2>
+            <ul style="margin:0 0 0 18px;color:var(--muted)">
+              <li>11-month internship → full-time engineering role</li>
+              <li>Migration of visualization stack (FusionCharts → Highcharts)</li>
+              <li>Built metric framework to reduce duplicate metrics across dashboards</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        <div>© <span id="year"></span> Janvi Pagariya</div>
+        <div style="color:var(--muted)">Built for clarity · Accessible · Responsive</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle (very small)
+    const btn = document.getElementById('themeToggle');
+    const body = document.body;
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    function setTheme(light){
+      if(light){
+        body.classList.add('light');
+        btn.setAttribute('aria-pressed','true');
+      } else {
+        body.classList.remove('light');
+        btn.setAttribute('aria-pressed','false');
+      }
+    }
+    // Default: dark
+    setTheme(false);
+
+    btn.addEventListener('click', () => {
+      const isLight = body.classList.toggle('light');
+      setTheme(isLight);
+    });
+  </script>
+</body>
+</html>
