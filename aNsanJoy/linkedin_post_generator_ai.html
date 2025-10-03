@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Post Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1d29;
+            color: #e1e4e8;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #252938;
+            padding: 24px;
+            overflow-y: auto;
+            border-right: 1px solid #32364a;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #b1b5c3;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px 12px;
+            background: #1a1d29;
+            border: 1px solid #32364a;
+            border-radius: 6px;
+            color: #e1e4e8;
+            font-size: 14px;
+        }
+
+        .input-field.error {
+            border-color: #e74c3c;
+        }
+
+        .instructions {
+            margin-top: 32px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            color: #b1b5c3;
+        }
+
+        .tips {
+            margin-top: 32px;
+        }
+
+        .tips ul {
+            padding-left: 20px;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+            color: #b1b5c3;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 48px;
+            overflow-y: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .header-icon {
+            font-size: 48px;
+        }
+
+        .subtitle {
+            color: #6c7086;
+            font-size: 18px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .post-creator {
+            background: #252938;
+            padding: 32px;
+            border-radius: 12px;
+        }
+
+        .creator-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .prompt-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #b1b5c3;
+        }
+
+        .prompt-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 16px;
+            background: #1a1d29;
+            border: 1px solid #32364a;
+            border-radius: 8px;
+            color: #e1e4e8;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 16px;
+        }
+
+        .prompt-textarea::placeholder {
+            color: #6c7086;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #ff4757;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary:hover {
+            background: #ff3849;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ff4757;
+            border: 1px solid #32364a;
+        }
+
+        .btn-secondary:hover {
+            background: #32364a;
+        }
+
+        .quick-examples {
+            background: #252938;
+            padding: 32px;
+            border-radius: 12px;
+        }
+
+        .examples-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .example-item {
+            background: #1a1d29;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #32364a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .example-item:hover {
+            background: #2a2d3f;
+            border-color: #ff4757;
+        }
+
+        .example-icon {
+            font-size: 20px;
+        }
+
+        .deploy-btn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            padding: 8px 16px;
+            background: transparent;
+            color: #e1e4e8;
+            border: 1px solid #32364a;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .deploy-btn:hover {
+            background: #32364a;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            ⚙️ Configuration
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Backend URL:</label>
+            <input type="text" class="input-field" value="http://localhost:8000" readonly>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">User ID</label>
+            <input type="text" class="input-field error" value="622b037f-11fe-40e3-84cse-5c" readonly>
+        </div>
+
+        <div class="instructions">
+            <div class="section-title">📘 How to Use</div>
+            <ol>
+                <li><strong>Enter your prompt</strong> in the main area</li>
+                <li><strong>Click Generate</strong> to create your post</li>
+                <li><strong>Review the result</strong> and analysis</li>
+                <li><strong>Copy and use</strong> your LinkedIn post!</li>
+            </ol>
+        </div>
+
+        <div class="tips">
+            <div class="section-title">💡 Tips for Better Posts</div>
+            <ul>
+                <li>Include specific news or</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <button class="deploy-btn">Deploy</button>
+
+        <div class="header">
+            <h1>
+                <span class="header-icon">💼</span>
+                LinkedIn Post Generator
+            </h1>
+            <p class="subtitle">Transform your ideas into viral LinkedIn posts with AI-powered content generation</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="post-creator">
+                <h2 class="creator-title">
+                    ✍️ Create Your Post
+                </h2>
+
+                <label class="prompt-label">
+                    Enter your prompt:
+                    <span style="margin-left: auto; cursor: pointer;">ⓘ</span>
+                </label>
+
+                <textarea class="prompt-textarea" placeholder="Example:
+[NEWS] OpenAI just released GPT-5 with new capabilities...
+[MY THOUGHTS] This will fundamentally change how we work with AI in the next year."></textarea>
+
+                <button class="btn btn-primary">
+                    🚀 Generate LinkedIn Post
+                </button>
+
+                <button class="btn btn-secondary">
+                    🎨 Demo with Sample Response
+                </button>
+            </div>
+
+            <div class="quick-examples">
+                <h2 class="examples-title">
+                    📋 Quick Examples
+                </h2>
+
+                <div class="example-item">
+                    <span class="example-icon">〉</span>
+                    <span>🚀 Tech Innovation</span>
+                </div>
+
+                <div class="example-item">
+                    <span class="example-icon">〉</span>
+                    <span>🚀 Market Analysis</span>
+                </div>
+
+                <div class="example-item">
+                    <span class="example-icon">〉</span>
+                    <span>🚀 Industry Disruption</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textarea = document.querySelector('.prompt-textarea');
+        const generateBtn = document.querySelector('.btn-primary');
+        const demoBtn = document.querySelector('.btn-secondary');
+        const exampleItems = document.querySelectorAll('.example-item');
+
+        const examples = {
+            'Tech Innovation': '[NEWS] Apple announced their new AR glasses with revolutionary features.\n[MY THOUGHTS] This could redefine how we interact with digital content in our daily lives.',
+            'Market Analysis': '[NEWS] The AI market is projected to reach $500B by 2025.\n[MY THOUGHTS] Companies that don\'t adopt AI now will struggle to compete in the next decade.',
+            'Industry Disruption': '[NEWS] Traditional retail continues to decline as e-commerce grows.\n[MY THOUGHTS] The future of shopping is hybrid - combining digital convenience with physical experiences.'
+        };
+
+        exampleItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const text = item.textContent.trim().split(' ').slice(1).join(' ');
+                if (examples[text]) {
+                    textarea.value = examples[text];
+                }
+            });
+        });
+
+        generateBtn.addEventListener('click', () => {
+            if (textarea.value.trim()) {
+                alert('🚀 Generating your LinkedIn post...\n\n(In the full application, this would call the backend API)');
+            } else {
+                alert('Please enter a prompt first!');
+            }
+        });
+
+        demoBtn.addEventListener('click', () => {
+            alert('🎨 Demo Mode\n\nThis would show a sample generated post with analysis.');
+        });
+    </script>
+</body>
+</html>
