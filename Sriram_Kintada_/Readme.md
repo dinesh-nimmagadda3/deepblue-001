@@ -6,7 +6,7 @@ A production-ready landing page for RESA (Research to Startup AI Agent Swarm) - 
 
 This landing page showcases RESA's capabilities and converts visitors (researchers, investors, entrepreneurs, and university partners) into users and waitlist signups.
 
-**Live Demo Landing Page:** [https://v0-resa-landing-page.vercel.app/](https://resa-680511424956.us-central1.run.app/)
+**Live Demo Landing Page:** [https://v0-resa-landing-page.vercel.app/](https://v0-resa-landing-page.vercel.app/)
 **Live Demo App:** [https://resa-680511424956.us-central1.run.app/](https://resa-680511424956.us-central1.run.app/)
 
 ## Features
@@ -269,5 +269,6 @@ This landing page template is provided as-is for the RESA project. Customize fre
 ---
 
 **Built with passion at IISER Pune | Disrupting India's deep tech landscape**
+
 
 
