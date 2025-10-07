@@ -2,8 +2,6 @@
 
 Transform your simple food photos into delicious, professional-grade masterpieces with the power of AI. This web application provides an easy-to-use interface to upload a food image, and our AI assistant will transform it into a stunning, professional-quality photograph with a perfect 1:1 aspect ratio, ready for your food blog or social media.
 
-![Culinary AI Photographer Screenshot](https://storage.googleapis.com/aistudio-hosting/project-assets/b2a1e3b4-f3d8-4a1e-8e6f-7d1c2d3b4e5f/app_screenshot.png)
-
 ## ✨ Features
 
 -   **AI-Powered Image Transformation**: Utilizes Google's Gemini API (`gemini-2.5-flash-image`) to intelligently edit and enhance food photos.
