@@ -170,7 +170,7 @@ const App: React.FC = () => {
             type="text"
             value={foodLabel}
             onChange={(e) => setFoodLabel(e.target.value)}
-            placeholder="Optional: What's the food? (e.g., Spaghetti)"
+            placeholder="Optional: Enter menu item name (e.g., Signature Angus Burger)"
             aria-label="Food label"
             className="w-full bg-slate-800 border-2 border-slate-700 text-white placeholder-slate-500 text-base rounded-lg focus:ring-sky-500 focus:border-sky-500 block p-3 transition-colors duration-200"
             disabled={isProcessing}
@@ -193,7 +193,7 @@ const App: React.FC = () => {
         </div>
       </main>
       <footer className="text-center p-4 text-slate-500 text-sm">
-        <p>Powered by Gemini. Built with React & Tailwind CSS.</p>
+        <p>Helping restaurants create beautiful menus.</p>
       </footer>
       {enlargedImage && (
         <ImageModal imageUrl={enlargedImage} onClose={() => setEnlargedImage(null)} />
