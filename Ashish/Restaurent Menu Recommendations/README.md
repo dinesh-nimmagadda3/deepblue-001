@@ -59,7 +59,6 @@ The app provides a small curated list in the sidebar (e.g. `openai/gpt-oss-20b`,
 ```
 .
 ├─ app.py           # Streamlit app
-├─ .venv/           # Virtual environment (local)
 └─ README.md
 ```
 
@@ -68,3 +67,4 @@ The app provides a small curated list in the sidebar (e.g. `openai/gpt-oss-20b`,
 
 ## License
 This project is provided as-is; you may adapt it to your needs.
+
