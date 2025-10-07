@@ -1,63 +1,65 @@
-#  Culinary AI Photographer
+# MenuReady AI Photo Studio
 
-Transform your simple food photos into delicious, professional-grade masterpieces with the power of AI. This web application provides an easy-to-use interface to upload a food image, and our AI assistant will transform it into a stunning, professional-quality photograph with a perfect 1:1 aspect ratio, ready for your food blog or social media.
+**The ultimate photography tool for hotel and restaurant owners.**
+
+Turn simple phone snapshots of your menu items into stunning, professional-grade photographs that attract more customers and drive sales. No expensive photoshoots, no complicated software. Just beautiful food photography, ready in seconds.
+
+<!-- TODO: Add a new screenshot of the application here. -->
+
+## 🤔 Why Use This Tool for Your Business?
+
+In the digital age, customers eat with their eyes first. High-quality photos on your menu, website, delivery apps (like Uber Eats, DoorDash), and social media are critical for success. However, professional food photography is expensive and time-consuming.
+
+**MenuReady AI solves this problem.**
+
+-   ✅ **Save Thousands on Photography**: Eliminate the need to hire professional photographers and book studio time.
+-   ✅ **Increase Customer Engagement**: Mouth-watering photos grab attention and have been proven to increase order rates.
+-   ✅ **Maintain Brand Consistency**: Achieve a consistent, high-quality look for all your menu items across all platforms.
+-   ✅ **Update Menus Instantly**: Launching a new special? Get a professional photo ready for your menu and social media in under a minute.
 
 ## ✨ Features
 
--   **AI-Powered Image Transformation**: Utilizes Google's Gemini API (`gemini-2.5-flash-image`) to intelligently edit and enhance food photos.
--   **Two Transformation Modes: Reimagine & Polish**:
-    -   **Reimagine**: Creates a completely new, professional scene. The AI rethinks the plating, utensils, and setting to be authentic and contextual to the dish.
-    -   **Polish**: Re-plates your dish in a clean, minimalist style. The AI places the food on a pristine white ceramic plate within a bright studio setting, improving the composition and lighting for a sharp, appetizing, photorealistic look.
--   **Enlarge Image View**: Click on the generated AI photo to view it in a full-screen modal, perfect for appreciating the details.
--   **Download Generated Image**: Easily save the high-quality, AI-generated photo to your device with a single click.
--   **Simple File Upload**: Upload your food images (JPEG, PNG, WebP) from your device with a simple, clickable interface.
--   **Contextual Prompts**: Add a text label (e.g., "Spaghetti Bolognese") to give the AI more context for better, more accurate results.
--   **Side-by-Side Comparison**: Instantly compare your original photo with the professionally generated image.
--   **Responsive Design**: A clean, modern, and fully responsive UI built with Tailwind CSS that works beautifully on all devices.
--   **Loading & Error States**: Clear feedback for users during image processing and for any potential errors.
+-   **AI-Powered Image Transformation**: Utilizes Google's cutting-edge AI to intelligently generate beautiful food photos.
+-   **Two Powerful Modes for Your Menu**:
+    -   **Reimagine**: Perfect for creating a unique, aspirational lifestyle shot. The AI designs a completely new, professional scene with plating and a setting that authentically matches the dish.
+    -   **Polish**: Ideal for a clean, consistent menu look. The AI places your dish on a pristine white ceramic plate in a bright studio setting, ensuring every photo is sharp, appetizing, and ready for your menu or delivery app.
+-   **Download & Deploy**: Instantly download the high-quality, 1:1 aspect ratio image, perfectly optimized for most delivery apps and social media platforms.
+-   **Simple & Fast**: The interface is incredibly easy to use. No training required. Get from a simple phone picture to a professional photo in just a few clicks.
+-   **Side-by-Side Comparison**: Instantly see the incredible transformation from your original photo to the AI-generated masterpiece.
 
-## 🚀 How It Works
+## 🚀 Getting Started
 
-This application is a single-page web app built with modern frontend technologies.
+This project is ready to run. The only configuration required is setting up your Google Gemini API key.
 
-1.  **Image Upload**: The user selects a food photo from their computer. The app reads the file and displays it as a preview.
-2.  **Choose a Mode**: The user selects one of two modes:
-    -   **Reimagine**: For creating a brand-new professional composition.
-    -   **Polish**: For re-plating the dish in a clean, minimalist studio style.
-3.  **AI Prompting**: The user can optionally provide a text label for the food. When the "Make it Professional" button is clicked, the app sends the image data and a carefully crafted text prompt (specific to the chosen mode) to the Gemini API.
-4.  **Gemini API Call**: The `gemini-2.5-flash-image` model processes the input image and text. Based on the selected mode, the AI will either completely reimagine the scene or re-plate the dish in a minimalist studio style for a clean, professional look.
-5.  **Display & Interact**: The API returns the newly generated image, which is then displayed alongside the original. The user can click to enlarge the new image or download it directly.
+### 1. Get a Gemini API Key
+
+You need an API key to use the Google Gemini models. You can obtain one for free from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+### 2. Set the API Key
+
+The application is configured to use an environment variable to securely access your API key.
+
+-   In your project's development environment, find the section for managing "Secrets" or "Environment Variables".
+-   Create a new secret with the name `API_KEY`.
+-   Set the value of this secret to the API key you obtained from Google AI Studio.
+
+Once the `API_KEY` is set, the application will be fully functional.
+
+## 👩‍🍳 How to Use
+
+1.  **Upload Your Photo**: Click the **Upload Food Photo** button or the card on the left to select an image of your dish.
+2.  **Choose Your Style**:
+    *   **Reimagine**: Creates a completely new, professional scene with plating and a setting that authentically matches the dish.
+    *   **Polish**: Places your dish on a pristine white ceramic plate in a bright studio setting, perfect for a clean and consistent menu look.
+3.  **(Optional) Name Your Dish**: For the "Reimagine" mode, entering the menu item's name (e.g., "Signature Angus Burger") helps the AI create a more contextual photo.
+4.  **Generate Your Photo**: Click **Make it Professional**. The AI will generate your new image in a few moments.
+5.  **View and Download**:
+    *   Your new photo will appear on the right. Click it to see a larger preview.
+    *   Click the **Download Photo** button to save the high-quality image.
+6.  **Start Over**: Use the **Clear** button to reset the app for your next menu item.
 
 ## 🛠️ Tech Stack
 
 -   **Frontend**: [React](https://reactjs.org/) & [TypeScript](https://www.typescriptlang.org/)
 -   **AI Model**: [Google Gemini API (`gemini-2.5-flash-image`)](https://ai.google.dev/) via `@google/genai` SDK
 -   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
--   **Bundling/Environment**: The app is designed to run in an environment where `esbuild` or a similar tool handles module resolution, as seen in `index.html`.
-
-## ⚙️ Setup and Running
-
-To run this project, you need to have an environment that can serve the static files and provide the necessary API key.
-
-1.  **Clone the repository** (or have the project files).
-2.  **Set up your API Key**: The application requires a Google Gemini API key. This key must be available as an environment variable named `API_KEY`.
-
-    ```
-    # In your environment setup (e.g., .env file or server configuration)
-    API_KEY="YOUR_GEMINI_API_KEY_HERE"
-    ```
-
-3.  **Serve the files**: Use a simple local server to host the `index.html` and its associated JavaScript/TypeScript files.
-
-##  usage
-
-1.  Open the application in your web browser.
-2.  Click the **"Upload Food Photo"** button or the placeholder card and select an image file from your device.
-3.  Your uploaded image will appear in the "Original Food Photo" card.
-4.  (Optional but recommended) In the text box, type the name of the food (e.g., "Avocado Toast", "Chocolate Lava Cake").
-5.  Select your desired mode: **Reimagine** or **Polish**.
-6.  Click the **"Make it Professional"** button.
-7.  Wait a few moments while the AI works its magic. A loading spinner will indicate that the image is being processed.
-8.  The new, professionally styled image will appear in the "Professional AI Photo" card.
-9.  Click on the new image to view it in a larger pop-up.
-10. Click the **"Download Photo"** button to save the image to your computer.
