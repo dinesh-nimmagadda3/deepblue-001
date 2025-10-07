@@ -4,8 +4,6 @@
 
 Turn simple phone snapshots of your menu items into stunning, professional-grade photographs that attract more customers and drive sales. No expensive photoshoots, no complicated software. Just beautiful food photography, ready in seconds.
 
-![MenuReady AI Photo Studio Screenshot](https://storage.googleapis.com/aistudio-hosting/project-assets/b2a1e3b4-f3d8-4a1e-8e6f-7d1c2d3b4e5f/app_screenshot.png)
-
 ## 🤔 Why Use This Tool for Your Business?
 
 In the digital age, customers eat with their eyes first. High-quality photos on your menu, website, delivery apps (like Uber Eats, DoorDash), and social media are critical for success. However, professional food photography is expensive and time-consuming.
