@@ -4,6 +4,8 @@
 
 Turn simple phone snapshots of your menu items into stunning, professional-grade photographs that attract more customers and drive sales. No expensive photoshoots, no complicated software. Just beautiful food photography, ready in seconds.
 
+<!-- TODO: Add a new screenshot of the application here. -->
+
 ## 🤔 Why Use This Tool for Your Business?
 
 In the digital age, customers eat with their eyes first. High-quality photos on your menu, website, delivery apps (like Uber Eats, DoorDash), and social media are critical for success. However, professional food photography is expensive and time-consuming.
@@ -25,13 +27,36 @@ In the digital age, customers eat with their eyes first. High-quality photos on 
 -   **Simple & Fast**: The interface is incredibly easy to use. No training required. Get from a simple phone picture to a professional photo in just a few clicks.
 -   **Side-by-Side Comparison**: Instantly see the incredible transformation from your original photo to the AI-generated masterpiece.
 
-## 🚀 How It Works
+## 🚀 Getting Started
 
-1.  **Upload Your Photo**: Take a quick picture of your dish and upload it.
-2.  **Choose Your Style**: Select **Reimagine** for a creative, contextual shot or **Polish** for a clean, studio-style photo.
-3.  **(Optional) Name Your Dish**: Enter the menu item name to give the AI more context.
-4.  **Generate**: Click "Make it Professional" and let the AI work its magic.
-5.  **Download**: Save your new photo and add it to your menu, website, or social media marketing campaign.
+This project is ready to run. The only configuration required is setting up your Google Gemini API key.
+
+### 1. Get a Gemini API Key
+
+You need an API key to use the Google Gemini models. You can obtain one for free from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+### 2. Set the API Key
+
+The application is configured to use an environment variable to securely access your API key.
+
+-   In your project's development environment, find the section for managing "Secrets" or "Environment Variables".
+-   Create a new secret with the name `API_KEY`.
+-   Set the value of this secret to the API key you obtained from Google AI Studio.
+
+Once the `API_KEY` is set, the application will be fully functional.
+
+## 👩‍🍳 How to Use
+
+1.  **Upload Your Photo**: Click the **Upload Food Photo** button or the card on the left to select an image of your dish.
+2.  **Choose Your Style**:
+    *   **Reimagine**: Creates a completely new, professional scene with plating and a setting that authentically matches the dish.
+    *   **Polish**: Places your dish on a pristine white ceramic plate in a bright studio setting, perfect for a clean and consistent menu look.
+3.  **(Optional) Name Your Dish**: For the "Reimagine" mode, entering the menu item's name (e.g., "Signature Angus Burger") helps the AI create a more contextual photo.
+4.  **Generate Your Photo**: Click **Make it Professional**. The AI will generate your new image in a few moments.
+5.  **View and Download**:
+    *   Your new photo will appear on the right. Click it to see a larger preview.
+    *   Click the **Download Photo** button to save the high-quality image.
+6.  **Start Over**: Use the **Clear** button to reset the app for your next menu item.
 
 ## 🛠️ Tech Stack
 
